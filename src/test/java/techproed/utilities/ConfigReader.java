@@ -2,31 +2,36 @@ package techproed.utilities;
 import java.io.FileInputStream;
 import java.util.Properties;
 public class ConfigReader {
-    //    Bu sinif configuration.properties file i okumak icin kullanilir
-//    property file i okumak icin properti objecsi kullanilir
+    // This class reads the configuration.properties file
+    // properties file i okumak icin properties object'i kullanilir
     private static Properties properties;
-    //    static block : ilk calisir
+    //      static block :
     static {
-//        data cekmek istedigim dosyaninin path i
-        String path="configuration.properties";
+//        data cekmek istedigim dosyanin path'i
+        String path = "configuration.properties";
         try {
 //            configuration.property dosyasini acar
+            //Opening configuration.properties file using FileInputStream
             FileInputStream fileInputStream = new FileInputStream(path);
-//            properties objesini instantiate ediyoruz
+//            properties object'ini instantiate ediyoruz
             properties = new Properties();
-//            configuration.property dosyasindaki datalari yukler
+//            configuration.properties dosyasindaki datalari yukler
             properties.load(fileInputStream);
-//            file input steam i kapatilir
+//            file input stream'i kapatiyoruz
+            //close the file
             fileInputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    //    ConfigReader.getProperty("browser"); -> chrome
-//    ConfigReader.getProperty("amazon_url"); -> https://www.amazon.com
+    //This method will get the key from properties file,
+    //And return the value as String
+    //We create this method to read the file
+//    ConfigReader.getProperty("browser"); -> chrome
+//    ConfigReader.getProperty("amazon_url"); -> https://amazon.com
 //    ConfigReader.getProperty("username"); -> ali
-    public static String getProperty(String key){
-        String value=properties.getProperty(key);
+    public static String getProperty(String key) {
+        String value = properties.getProperty(key);
         return value;
     }
 }
