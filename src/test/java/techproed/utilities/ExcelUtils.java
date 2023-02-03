@@ -11,7 +11,8 @@ public class ExcelUtils {
     private Workbook workBook;
     private Sheet workSheet;
     private String path;
-    //    Constructor : Excel path i ve sayfaya ulasmak icn kullinir
+
+    //    Constructor : Excel path i ve sayfaya ulasmak icn kullanilir
     public ExcelUtils(String path, String sheetName) {
         this.path = path;
         try {
@@ -48,16 +49,17 @@ public class ExcelUtils {
         }
         return data;
     }
-    //===============exceldeki toplan sutun sayisini return eder=================
+    //===============exceldeki toplam sutun sayisini return eder=================
     public int columnCount() {
         //getting how many numbers in row 1
-        return workSheet.getRow(0).getLastCellNum();
+        return workSheet.getRow(0).getLastCellNum( );
     }
     //===============exceldeki satir sayisini return eder====================
     public int rowCount() {
         return workSheet.getLastRowNum() + 1; }//adding 1 to get the actual count
+
     //==============Satir ve sutun sayilari girildiginde, o hucredeki veriyi return eder==========
-    public String getCellData(int rowNum, int colNum) {
+    public String getCellData(int rowNum, int colNum) { //index sayisina gore
         Cell cell;
         try {
             cell = workSheet.getRow(rowNum).getCell(colNum);
@@ -86,7 +88,7 @@ public class ExcelUtils {
         }
         return columns;
     }
-    //=========Deger, Satir, Sutun girindiginde, O satur ve sutuna girilen veriyi ekler===============//
+    //=========Deger, Satir, Sutun girildiginde, O satir ve sutuna girilen veriyi ekler===============("age",0,2 ==> 0.satir 2.sutuna age ekler)
     public void setCellData(String value, int rowNum, int colNum) {
         Cell cell;
         Row row;
@@ -111,7 +113,7 @@ public class ExcelUtils {
         int column = getColumnsNames().indexOf(columnName);
         setCellData(value, row, column);
     }
-    //    Exceldeki datalari basliksiz olarak 2 boyurlu array seklinde return eder
+    //    Exceldeki datalari basliksiz olarak 2 boyutlu array seklinde return eder
     public String[][] getDataArrayWithoutFirstRow() {
         String[][] data = new String[rowCount()-1][columnCount()];
         for (int i = 1; i < rowCount(); i++) {
