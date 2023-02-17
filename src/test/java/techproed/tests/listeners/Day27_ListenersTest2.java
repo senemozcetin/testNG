@@ -1,14 +1,12 @@
 package techproed.tests.listeners;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.SkipException;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import techproed.utilities.Driver;
 
-@Listeners(techproed.utilities.Listeners.class)//testcase imle Listeners i iliskilendiriyoruz bununla
-
-public class Day27_ListenersTest1 {
+public class Day27_ListenersTest2 {
     @Test
     public void test1(){
         System.out.println("PASS");
@@ -17,7 +15,8 @@ public class Day27_ListenersTest1 {
     @Test
     public void test2(){
         System.out.println("FAIL");
-        Assert.assertTrue(false);
+        Driver.getDriver().get("https://www.amazon.com");
+        Driver.getDriver().findElement(By.xpath("asdgadfhadfgnh"));
     }
     @Test
     public void test3(){
