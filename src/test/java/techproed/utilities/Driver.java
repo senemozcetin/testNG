@@ -11,6 +11,7 @@ public class Driver {
     private static WebDriver driver;
     //    getDriver() is used to instantiate the driver object
     public static WebDriver getDriver(){
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         if (driver==null){
             switch (ConfigReader.getProperty("browser")) {
                 case "chrome":
